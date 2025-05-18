@@ -1,0 +1,99 @@
+
+### API Test File
+### Use with REST Client extension in VS Code
+
+### Get all products
+GET http://localhost:5000/api/products
+
+### Add a new product
+POST http://localhost:5000/api/products
+Content-Type: application/json
+
+{
+  "name": "Strawberries",
+  "category": "Fruits",
+  "shelf_life_days": 5
+}
+
+### Get all supply chain nodes
+GET http://localhost:5000/api/nodes
+
+### Add a new node
+POST http://localhost:5000/api/nodes
+Content-Type: application/json
+
+{
+  "name": "Farm C",
+  "type": "farm",
+  "location": "Washington",
+  "capacity": 4000
+}
+
+### Get all inventory records
+GET http://localhost:5000/api/inventory
+
+### Add a new inventory record
+POST http://localhost:5000/api/inventory
+Content-Type: application/json
+
+{
+  "node_id": 1,
+  "product_id": 2,
+  "quantity": 250,
+  "temperature": 5,
+  "humidity": 70,
+  "quality_score": 4.6
+}
+
+### Get all shipments
+GET http://localhost:5000/api/shipments
+
+### Create a new shipment
+POST http://localhost:5000/api/shipments
+Content-Type: application/json
+
+{
+  "product_id": 1,
+  "source_node_id": 3,
+  "destination_node_id": 4,
+  "quantity": 300,
+  "departure_time": "2023-05-18 08:30:00",
+  "estimated_arrival_time": "2023-05-20 14:00:00",
+  "status": "scheduled"
+}
+
+### Update shipment status
+PUT http://localhost:5000/api/update_shipment/2
+Content-Type: application/json
+
+{
+  "status": "delivered",
+  "actual_arrival_time": "2023-05-16 12:15:00"
+}
+
+### Predict spoilage rate
+POST http://localhost:5000/api/predict/spoilage
+Content-Type: application/json
+
+{
+  "temperature": 8,
+  "humidity": 75,
+  "shelf_life_days": 7,
+  "days_in_transit": 3,
+  "initial_quality": 9.0
+}
+
+### Predict demand
+POST http://localhost:5000/api/predict/demand
+Content-Type: application/json
+
+{
+  "month": 6,
+  "previous_demand": 1400,
+  "price": 5.29,
+  "marketing_spend": 900,
+  "competitor_activity": 2
+}
+
+### Get supply chain metrics
+GET http://localhost:5000/api/supply_chain_metrics
